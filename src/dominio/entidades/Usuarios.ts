@@ -5,14 +5,6 @@ enum Roles {
     USER_ROL = "USER_ROL"
 }
 
-// interface UsariosType{
-//     nombre: string,
-//     email: string,
-//     password: string,
-//     img: string,
-//     rol: Roles
-// }
-
 export class UsersEntidad {
 
 
