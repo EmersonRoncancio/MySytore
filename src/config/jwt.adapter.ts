@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken'
 import { envs } from './envs'
+import { error } from 'console'
 
 export const JwtAdapter = {
     generateToken: async (payload: any, duration: string = "2h") => {
@@ -15,7 +16,13 @@ export const JwtAdapter = {
     },
     validateToken: (token: string) => {
 
+        return new Promise((resolve) => {
+            jwt.verify(token, envs.JWT_SEED, (error, decoded)=>{
 
-        return
+                if(error) return resolve(null)
+
+                resolve(decoded)
+            })
+        })
     }
 }
