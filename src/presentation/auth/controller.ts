@@ -21,7 +21,6 @@ export class AuthController {
         const body = req.body
 
         const [error, Dto] = RegisterDto.create(body)
-
         if (error) return res.status(400).json({ error })
 
         this.AuthServive.registerUser(Dto!)

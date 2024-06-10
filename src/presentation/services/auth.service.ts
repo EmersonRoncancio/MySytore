@@ -56,7 +56,7 @@ export class AuthService {
 
         const { password, ...UserChek } = UsersEntidad.fromObject(user)
 
-        const token = await JwtAdapter.generateToken({ id: user.id, email: user.email }, "3h")
+        const token = await JwtAdapter.generateToken({ id: user.id }, "3h")
         if (!token) throw CustomError.internalServer("Error al generar el token")
 
         return {
