@@ -7,7 +7,7 @@ const CategorieSchema = new mongoose.Schema({
         unique: true
     },
     disponible: {
-        type: String,
+        type: Boolean,
         default: false
     },
     user: {

@@ -31,6 +31,6 @@ export class AuthMiddleware {
             res.status(500).json({ error: 'mani' })
         }
 
-        next()
+        
     }
 }

@@ -14,7 +14,6 @@ export class CreateCategoryDTO {
         if(!nombre) return ['El nombre es requerido', undefined]
         if(typeof disponible !== 'boolean'){
             disponibleBoolean = ( disponible === 'true')
-            console.log(disponibleBoolean)
         }
 
         return [undefined, new CreateCategoryDTO(nombre, disponibleBoolean)]
