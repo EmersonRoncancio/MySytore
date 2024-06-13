@@ -24,4 +24,8 @@ export class ConecctionMongo{
             throw error
         }
     }
+
+    static async diconecct(){
+        await mongoose.disconnect()
+    }
 }
