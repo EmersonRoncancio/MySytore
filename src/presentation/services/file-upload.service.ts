@@ -24,7 +24,7 @@ export class FileUploadService {
         try {
             const fileExtension = file.mimetype.split('/')[1]
 
-            if(!validateExtensions.includes(fileExtension)){
+            if (!validateExtensions.includes(fileExtension)) {
                 throw CustomError.badRequest(`Tipo de archivo no valido: ${fileExtension}`)
             }
 
@@ -34,18 +34,25 @@ export class FileUploadService {
 
             file.mv(`${destination}/${fillName}`)
 
-            return fillName
+            return { fillName }
         } catch (error) {
             console.log(error)
             throw CustomError.internalServer('Internal Server Error')
         }
     }
 
-    public UploadMultiple(
-        ile: UploadedFile[],
+    public async UploadMultiple(
+        file: UploadedFile[],
         folder: string = 'uploads',
         validateExtensions: string[] = ['jpg', 'png', 'jpeg', 'gif']
     ) {
 
+
+        const fileNames = await Promise.all(
+            file.map((files) => {
+                return this.UploadSingle(files, folder, validateExtensions)
+            }))
+
+        return fileNames
     }
 }

@@ -21,20 +21,27 @@ export class FileUploadController {
     FileUpload = (req: Request, res: Response) => {
 
         const { type } = req.params
-        const validateTypes = ['user','categories','products']
-        if(!validateTypes.includes(type)){
-            return res.status(400).json({error:'Ivalid Type'})
+        const validateTypes = ['user', 'categories', 'products']
+        if (!validateTypes.includes(type)) {
+            return res.status(400).json({ error: 'Ivalid Type' })
         }
 
         const file = req.body.files.at(0) as UploadedFile
 
 
         this.uploadService.UploadSingle(file, `uploads/${type}`)
-            .then(uploded => res.json({uploded}))
-            .catch( error => this.handleError(error, res))
+            .then(uploded => res.json({ uploded }))
+            .catch(error => this.handleError(error, res))
     }
 
     UploadMultipleFiles = (req: Request, res: Response) => {
 
+        const { type } = req.params
+
+        const file = req.body.files as UploadedFile[]
+
+        this.uploadService.UploadMultiple(file, `uploads/${type}`)
+            .then(uploded => res.json(uploded))
+            .catch(error => this.handleError(error, res))
     }
 }

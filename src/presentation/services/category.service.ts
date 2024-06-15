@@ -21,8 +21,6 @@ export class CategoryService {
 
             await newCategory.save()
 
-            console.log(newCategory.disponible)
-
             return {
                 id: newCategory.id,
                 nombre: newCategory.nombre,
