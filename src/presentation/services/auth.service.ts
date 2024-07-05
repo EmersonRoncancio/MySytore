@@ -63,6 +63,8 @@ export class AuthService {
             User: UserChek,
             Token: token
         }
+
+
     }
 
     public validateEmail = async (token: string) => {
@@ -70,11 +72,11 @@ export class AuthService {
         const validateToken = await JwtAdapter.validateToken(token)
         if (!validateToken) throw CustomError.notAuthorized("Token no autorizado")
 
-        const { email } = validateToken as {email: string}
-        if(!email) throw CustomError.internalServer("Email no  esta en el token")
-    
-        const user = await UserModel.findOne({email})
-        if(!user) throw CustomError.internalServer("Email no existe en la base de datos")
+        const { email } = validateToken as { email: string }
+        if (!email) throw CustomError.internalServer("Email no esta en el token")
+
+        const user = await UserModel.findOne({ email })
+        if (!user) throw CustomError.internalServer("Email no existe en la base de datos")
 
         user.emailValidate = true
         await user.save()

@@ -3,11 +3,11 @@ import mongoose from "mongoose";
 const UserSchema = new mongoose.Schema({
     nombre: {
         type: String,
-        require: [true, 'El nombre es requerido']
+        required: [true, 'El nombre es requerido']
     },
     email: {
         type: String,
-        require: [true, 'El email es requerido'],
+        required: [true, 'El email es requerido'],
         unique: true
     },
     emailValidate: {
@@ -16,7 +16,7 @@ const UserSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        require: [true, 'La contraseña es requerido']
+        required: [true, 'La contraseña es requerido']
     },
     img: {
         type: String

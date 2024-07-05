@@ -3,7 +3,7 @@ import mongoose, { Schema } from "mongoose";
 const CategorieSchema = new mongoose.Schema({
     nombre: {
         type: String,
-        require: [true, 'El nombre es requerido'],
+        required: [true, 'El nombre es requerido'],
         unique: true
     },
     disponible: {
@@ -13,7 +13,7 @@ const CategorieSchema = new mongoose.Schema({
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User',
-        require: true
+        required: true
     }
 })
 
